@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Silk.Core.Database;
@@ -9,9 +10,10 @@ using Silk.Core.Database;
 namespace Silk.Core.Migrations
 {
     [DbContext(typeof(SilkDbContext))]
-    partial class SilkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201230040848_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,9 +139,6 @@ namespace Silk.Core.Migrations
                     b.Property<bool>("BlacklistWords")
                         .HasColumnType("boolean");
 
-                    b.Property<bool>("DeleteMessageOnMatchedInvite")
-                        .HasColumnType("boolean");
-
                     b.Property<decimal>("GeneralLoggingChannel")
                         .HasColumnType("numeric(20,0)");
 
@@ -172,9 +171,6 @@ namespace Silk.Core.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<bool>("UseAggressiveRegex")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("WarnOnMatchedInvite")
                         .HasColumnType("boolean");
 
                     b.HasKey("ConfigId");
